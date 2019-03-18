@@ -13,6 +13,7 @@
     "angular": "^1.7.8",
     "angular-animate": "^1.7.8",
     "angular-aria": "^1.7.8",
+    "angular-colorpicker-directive": "^2.0.0",
     "angular-locale-pt-br": "^1.3.16",
     "angular-material": "^1.1.13",
     "angular-material-expansion-panel": "^0.7.2",
@@ -20,8 +21,10 @@
     "angular-resource": "^1.7.8",
     "angular-route": "^1.7.8",
     "angular-sanitize": "^1.7.8",
+    "angularjs-datepicker": "^2.1.23",
     "bootstrap": "^4.3.1",
     "express": "^4.16.4",
+    "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
     "ngstorage": "^0.3.11",
     "nodemon": "^1.18.10"

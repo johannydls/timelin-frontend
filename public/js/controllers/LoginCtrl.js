@@ -24,9 +24,10 @@ angular.module('timelin')
     };
 
     $rootScope.logout = function() {
-        delete $localStorage.userLogin;
+        $rootScope.userLogin = null;
+        $localStorage.userLogin = null;
         delete $rootScope.userLogin;
+        delete $localStorage.userLogin;
         $location.path('/login');
-        console.log("LocalStorage limpo. Logout")
     }
 });

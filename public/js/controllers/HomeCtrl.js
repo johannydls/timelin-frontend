@@ -1,16 +1,16 @@
 angular.module('timelin')
 
-.controller('HomeCtrl', function ($scope, EventService, $localStorage, $mdDialog, $log) {
+.controller('HomeCtrl', function ($scope, EventGetService, $localStorage, $mdDialog, EventDeleteService, EventPostService) {
 
     $scope.userLogin = $localStorage.userLogin;
 
-    $scope.eventService = new EventService();
-
-    $scope.cores = ["#C62828","#1565C0","#388E3C","#558B2F","#FFFF00","#FF4081","#7B1FA2","#7C4DFF","#795548","#EF6C00"];
+    $scope.eventGetService = new EventGetService();
+    $scope.eventPostService = new EventPostService();
+    $scope.eventDeleteService = new EventDeleteService();
 
     $scope.eventos = [];
     const listarEventos = () => {
-        EventService.query({idUser: $scope.userLogin.id}, (events) => {
+        EventGetService.query({idUser: $scope.userLogin.id}, (events) => {
             $scope.eventos = events;
         },
         (erro) => {
@@ -22,26 +22,32 @@ angular.module('timelin')
     listarEventos();
 
     $scope.addAcontecimento = () => {
-        $scope.eventService.idUser = $scope.userLogin.id;
-        $scope.eventService.date = new Date($scope.myDate);
 
-        $scope.eventService.$save()
-        .then(() => {
+        $scope.eventPostService.idUser = $scope.userLogin.id;
+        $scope.eventPostService.color = $scope.color;
+        $scope.eventPostService.date = $scope.myDate;
+        
+        $scope.eventPostService.$save()
+        .then((event) => {
             if ($scope.frmEvent.$valid) {
                 listarEventos();
-                console.log("Evento criado!");
-                $('#addEvento').modal('hide');
-            }
-            delete $scope.eventService.title;
-            delete $scope.eventService.description;
-            delete $scope.myDate;
-            delete $scope.eventService.color;
 
+                
+                console.log("Evento criado!");
+                console.log(event)
+                $('#addEvento').modal('hide');
+                $scope.eventPostService = new EventPostService();
+                delete $scope.myDate;
+            }
+
+            
+            
         })
         .catch((erro) => {
             console.log("Não foi possível criar um acontecimento.");
             console.log(erro);
         });
+        
         listarEventos();
     };
 
@@ -59,11 +65,9 @@ angular.module('timelin')
 
     $scope.hide = function() {
         $mdDialog.hide();
-        listarEventos();
     };
   
     $scope.cancel = function() {
         $mdDialog.cancel();
-        listarEventos();
-    };
+    }; 
 });

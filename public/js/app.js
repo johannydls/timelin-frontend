@@ -8,13 +8,15 @@ const app = angular.module('timelin',
      'ngStorage',
      'ngAnimate',
      'ngSanitize',
-     'material.components.expansionPanels'
+     'material.components.expansionPanels',
+     'colorpicker',
+     '720kb.datepicker'
     ]
 );
 
 app.constant('env', {
-    BASE_API: 'http://localhost:3005',
-    //BASE_API: 'https://timelin-backend.herokuapp.com'
+    //BASE_API: 'http://localhost:3005',
+    BASE_API: 'https://timelin-backend.herokuapp.com'
 });
 
 app.config(($routeProvider) => {
@@ -72,3 +74,11 @@ app.config(function($mdDateLocaleProvider) {
       return m.isValid() ? m.toDate() : new Date(NaN);
     };
 })
+
+app.controller("DateCtrl", function($log) {
+    this.myDate = new Date();
+
+    this.onDateChanged = function() {
+      $log.log('Updated Date: ', this.myDate);
+    };
+  });
