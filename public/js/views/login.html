@@ -3,13 +3,14 @@
 <br>
 <div class="login-wrapper">
     <img src="/public/resources/img/logo.png" alt="">
-    <form name="frm" novalidate>
-        <input type="text" placeholder="Email">
-        <input type="password" placeholder="Senha">
+    
+    <form ng-submit="login()" name="frm" >
+        <input ng-model="loginService.email" name="email" type="text" placeholder="Email" required>
+        <input ng-model="loginService.password" name="password" type="password" placeholder="Senha" required>
 
         <section layout="row" layout-xs="column" layout-align="center center" layout-wrap>
 
-            <md-button class="md-raised md-primary" style="background:#4bb0ee;width: 260px">Entrar</md-button>
+            <md-button class="md-raised md-primary" type="submit" style="width: 260px">Entrar</md-button>
 
         </section>
     </form> 

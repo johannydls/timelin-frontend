@@ -1,0 +1,97 @@
+
+<link rel="stylesheet" href="/public/js/views/home.css">
+<!-- Modal -->
+<div class="modal fade md-whiteframe-6dp" id="addEvento" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+                <img src="/public/resources/img/favicon.png" width="32" alt="">
+                <br>
+            <h5 class="modal-title" id="exampleModalLabel" style="margin-left:5px">Novo acontecimento</h5>
+            <br>
+            
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body timeline-wrapper-form">
+
+            <form name="frmEvent">
+                <input type="text" placeholder="Título do evento" name="title" ng-model="eventService.title" required>
+                <textarea name="description" id="" cols="30" rows="5" placeholder="O que aconteceu?" ng-model="eventService.description" required></textarea>
+                
+                <input type="date" placeholder="Quando aconteceu?" name="myDate" ng-model="myDate" required>
+                
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">Cor</label>
+                    </div>
+                    <select class="custom-select" ng-model="eventService.color" required>
+                        <option ng-value="cor" ng-style="{'background-color':cor}" ng-repeat="cor in cores">{{cor}}</option>
+                    </select>
+                </div>
+
+            </form>
+
+        </div>
+        <div class="modal-footer">
+            <section layout="row" layout-xs="column" layout-align="center center" layout-wrap>
+                <md-button class="md-raised md-default" type="button" data-dismiss="modal">Cancelar</md-button>
+                <md-button class="md-raised md-primary" type="submit" ng-click="addAcontecimento()">Postar</md-button>
+            </section>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!--data-toggle="modal" data-target="#addEvento    ng-click="showDialogAddEvent($event)""-->
+<button style="background:#4CAF50" data-toggle="modal" data-target="#addEvento" class="md-fab md-fab-bottom-right md-button" type="button" style="position:fixed" >
+        
+        <md-icon md-svg-src="/public/resources/img/outline-add-24px.svg"></md-icon>
+      <div class="md-ripple-container">
+
+      </div>
+      <md-tooltip md-direction="left">Adicionar acontecimento</md-tooltip>
+    </button>
+
+<div class="timeline-wrapper">
+    <div class="box">
+        <img src="/public/resources/img/home-logo-timeline.png" alt="">
+    </div>
+
+    <div class="event-list">
+            
+        <md-expansion-panel  md-component-id="panelOne" ng-repeat="event in eventos" style="margin-bottom:10px;">
+            
+            <md-expansion-panel-collapsed ng-style="{background:event.color}">
+                <span ng-style="{background:event.color}" style="width:10px; height: 10px; padding: 2px auto; border-radius: 50%;"></span>
+                <div class="md-title">{{event.title}}</div>
+                <div class="md-summary">{{event.date | date:"dd 'de' MMMM 'de' yyyy"}}</div>
+                <md-expansion-panel-icon></md-expansion-panel-icon>
+            </md-expansion-panel-collapsed>
+                
+                
+            <md-expansion-panel-expanded>
+            
+                <md-expansion-panel-header ng-style="{'background':event.color}" ng-click="$panel.collapse()">
+                    <div class="md-title">{{event.title}}</div>
+                    <div class="md-summary">{{event.date | date:"dd 'de' MMMM 'de' yyyy"}}</div>
+                    <md-expansion-panel-icon></md-expansion-panel-icon>
+                </md-expansion-panel-header>
+            
+                <md-expansion-panel-content>
+                    <p>{{event.description}}</p>
+                </md-expansion-panel-content>
+            
+                <md-expansion-panel-footer>
+                    <div flex></div>
+                    <md-button class="md-warn" ng-click="$panel.collapse()">Excluir</md-button>
+                    <md-button class="md-button md-primary" ng-click="$panel.collapse()">Fechar</md-button>
+                </md-expansion-panel-footer>
+            
+            </md-expansion-panel-expanded>
+                
+        </md-expansion-panel>
+            
+    </div>
+</div>

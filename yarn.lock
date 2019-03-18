@@ -30,6 +30,11 @@ angular-locale-pt-br@^1.3.16:
   resolved "https://registry.yarnpkg.com/angular-locale-pt-br/-/angular-locale-pt-br-1.3.16.tgz#9c4b43571832f6e1d23b075cb60ca2af295c1fb5"
   integrity sha512-UIlnWcZUA79sX92IcyGKpcD4CB38G9XFgAqXngqEKaKTCBcH8rO59iv5Fa53nPYczJcR9fJTLCHEOnV+cYX5BA==
 
+angular-material-expansion-panel@^0.7.2:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/angular-material-expansion-panel/-/angular-material-expansion-panel-0.7.2.tgz#8c257974dff177cc076208d03bdb0a832df84eac"
+  integrity sha1-jCV5dN/xd8wHYgjQO9sKgy34Tqw=
+
 angular-material@^1.1.13:
   version "1.1.13"
   resolved "https://registry.yarnpkg.com/angular-material/-/angular-material-1.1.13.tgz#36c9cee590156f7e9d2be3bf6b2bf277f1293b4d"

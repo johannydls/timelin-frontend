@@ -1,3 +1,4 @@
+
 const app = angular.module('timelin', 
     [
      'ngMaterial',
@@ -6,14 +7,14 @@ const app = angular.module('timelin',
      'ngMessages',
      'ngStorage',
      'ngAnimate',
-     'ngSanitize'
- 
+     'ngSanitize',
+     'material.components.expansionPanels'
     ]
 );
 
 app.constant('env', {
-    BASE_API_LOCAL: 'http://localhost:3005',
-    BASE_API_REMOTE: 'https://timelin-backend.herokuapp.com'
+    BASE_API: 'http://localhost:3005',
+    //BASE_API: 'https://timelin-backend.herokuapp.com'
 });
 
 app.config(($routeProvider) => {
@@ -26,11 +27,48 @@ app.config(($routeProvider) => {
             templateUrl: 'public/js/views/registro.html',
             controller: 'RegistroCtrl'
         })
-        .when('/users', {
-            templateUrl: 'public/js/views/users.html',
-            controller: 'UsersCtrl'
+        .when('/home', {
+            templateUrl: 'public/js/views/home.html',
+            controller: 'HomeCtrl'
+        })
+        .when('/sobre', {
+            templateUrl: 'public/js/views/sobre.html'
         })
         .otherwise({
             redirectTo: '/login'
         })
+});
+
+app.run(function($rootScope, $route, $localStorage, $location) {
+
+    $rootScope.userLogin = $localStorage.userLogin || null;
+
+    const rotasBloqueadasNaoLogado = ['/home'];
+    const rotasBloqueadasLogado = ['/login', '/registro'];
+
+    $rootScope.$on('$locationChangeStart', function() {
+
+        //Bloqueio para usuário não logado
+        if ($rootScope.userLogin == null &&
+            rotasBloqueadasNaoLogado.indexOf($location.path()) != -1) {
+                $location.path('/login');
+        }
+
+        //Bloqueio para usuário logado
+        if ($rootScope.userLogin != null &&
+            rotasBloqueadasLogado.indexOf($location.path()) != -1) {
+                $location.path('/home');
+        }
+    })
+})
+
+app.config(function($mdDateLocaleProvider) {
+    $mdDateLocaleProvider.formatDate = function(date) {
+      return date ? moment(date).format('L') : '';
+    };
+
+    $mdDateLocaleProvider.parseDate = function(dateString) {
+      var m = moment(dateString, 'L', true);
+      return m.isValid() ? m.toDate() : new Date(NaN);
+    };
 })
