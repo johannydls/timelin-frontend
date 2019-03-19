@@ -15,8 +15,8 @@ const app = angular.module('timelin',
 );
 
 app.constant('env', {
-    BASE_API: 'http://localhost:3005',
-    //BASE_API: 'https://timelin-backend.herokuapp.com'
+    //BASE_API: 'http://localhost:3005',
+    BASE_API: 'https://timelin-backend.herokuapp.com'
 });
 
 app.config(($routeProvider) => {
