@@ -10,13 +10,13 @@ const app = angular.module('timelin',
      'ngSanitize',
      'material.components.expansionPanels',
      'colorpicker',
-     '720kb.datepicker'
+     '720kb.datepicker',
     ]
 );
 
 app.constant('env', {
-    //BASE_API: 'http://localhost:3005',
-    BASE_API: 'https://timelin-backend.herokuapp.com'
+    BASE_API: 'http://localhost:3005',
+    //BASE_API: 'https://timelin-backend.herokuapp.com'
 });
 
 app.config(($routeProvider) => {
@@ -34,10 +34,15 @@ app.config(($routeProvider) => {
             controller: 'HomeCtrl'
         })
         .when('/sobre', {
-            templateUrl: 'public/js/views/sobre.html'
+            templateUrl: 'public/js/views/sobre.html',
+            controller: 'SobreCtrl'
+        })
+        .when('/conta', {
+            templateUrl: 'public/js/views/conta.html',
+            controller: 'ContaCtrl'
         })
         .otherwise({
-            redirectTo: '/login'
+            redirectTo: '/sobre'
         })
 });
 

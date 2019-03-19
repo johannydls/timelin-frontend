@@ -51,6 +51,21 @@ angular.module('timelin')
         listarEventos();
     };
 
+    $scope.removeAcontecimento = (idEvent) => {
+        EventDeleteService.delete({id: idEvent}, () => {
+            listarEventos();
+            $mdDialog.cancel();
+            console.log("Evento removido!");
+        }, (erro) => {
+            console.log("Não foi possível remover o evento");
+            console.log(erro);
+        });
+    };
+
+    $scope.selecionaEvento = (evento) => {
+        $scope.eventoSelecionado = evento;
+    };
+
     $scope.showDialogAddEvent = (ev) => {
         $mdDialog.show({
             controller: 'HomeCtrl',
@@ -70,4 +85,23 @@ angular.module('timelin')
     $scope.cancel = function() {
         $mdDialog.cancel();
     }; 
+
+    $scope.showConfirmRemove = function(ev, evt) {
+        $scope.eventoSelecionado = evt;
+
+        var confirm = $mdDialog.confirm()
+              .title('Você deseja remover o evento')
+              .htmlContent(`
+              <br><h3>${$scope.eventoSelecionado.title}</h3><br>`)
+              .ariaLabel('Remover evento')
+              .targetEvent(ev)
+              .ok('Sim, desejo remover')
+              .cancel('Cancelar');
+    
+        $mdDialog.show(confirm).then(function() {
+          $scope.removeAcontecimento($scope.eventoSelecionado.id);
+        }, function() {
+          console.log("Evento removido!");
+        });
+      };
 });

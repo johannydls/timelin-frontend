@@ -41,7 +41,7 @@
                 ng-style="{background:color}"/>
 
             </form>
-            {{eventPostService.title}}; {{eventPostService.description}}; {{myDate}}; {{color}}
+            {{eventPostService.title}}; {{eventPostService.description}}; {{myDate}}; {{color}}; {{eventPostService.id}}
         </div>
         <div class="modal-footer">
             <section layout="row" layout-xs="column" layout-align="center center" layout-wrap>
@@ -50,7 +50,6 @@
             </section>
         </div>
         </div>
-        {{myDate}}
     </div>
 </div>
 
@@ -94,7 +93,7 @@
             
                 <md-expansion-panel-footer>
                     <div flex></div>
-                    <md-button class="md-warn" ng-click="$panel.collapse()">Excluir</md-button>
+                    <md-button class="md-warn" ng-click="showConfirmRemove($event, event)">Excluir</md-button>
                     <md-button class="md-button md-primary" ng-click="$panel.collapse()">Fechar</md-button>
                 </md-expansion-panel-footer>
             
