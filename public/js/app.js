@@ -46,12 +46,12 @@ app.config(($routeProvider) => {
         })
 });
 
-app.run(function($rootScope, $route, $localStorage, $location) {
+app.run(function($rootScope, $localStorage, $location) {
 
     $rootScope.userLogin = $localStorage.userLogin || null;
 
-    const rotasBloqueadasNaoLogado = ['/home'];
-    const rotasBloqueadasLogado = ['/login', '/registro'];
+    const rotasBloqueadasNaoLogado = ['/home', 'conta'];
+    const rotasBloqueadasLogado = ['/login', '/registro', '/sobre'];
 
     $rootScope.$on('$locationChangeStart', function() {
 

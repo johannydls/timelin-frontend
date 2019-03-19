@@ -1,1 +1,67 @@
-<h1>Account</h1>
+
+<link rel="stylesheet" href="/public/js/views/login.css">
+<br>
+<div class="login-wrapper">
+    
+    <h1 class=".md-display-2">Minha conta</h1>
+    <br><br>
+
+    <div class="table-responsive" style="width: 600px">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>Nome:</td>
+                    <td>{{user.name}}</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>{{user.email}}</td>
+                </tr>
+                <tr>
+                    <td>Acontecimentos criados:</td>
+                    <td>{{eventSize}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <section layout="row" layout-xs="column" layout-align="center center" layout-wrap>
+
+            <md-button class="md-raised md-primary" type="button" data-toggle="modal" data-target="#addEvento">Editar dados</md-button>
+
+        </section>
+    
+</div>
+<link rel="stylesheet" href="/public/js/views/home.css">
+<!-- Modal -->
+<div class="modal fade md-whiteframe-6dp" id="addEvento" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <img src="/public/resources/img/favicon.png" width="32" alt="">
+                    <br>
+                <h5 class="modal-title" id="exampleModalLabel" style="margin-left:5px">Editar dados pessoais</h5>
+                <br>
+                
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        
+            <div class="modal-body timeline-wrapper-form">
+
+            <form name="frmEvent">
+                <input type="text" placeholder="Nome" name="name" ng-model="user.name" required>
+                <input type="email" placeholder="Email" name="email" ng-model="user.email" required>
+                <input type="password" placeholder="Password" name="password" ng-model="password" required>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <section layout="row" layout-xs="column" layout-align="center center" layout-wrap>
+                <md-button class="md-raised md-default" type="button" data-dismiss="modal">Cancelar</md-button>
+                <md-button class="md-raised md-primary" type="submit" ng-click="addAcontecimento()">Salvar</md-button>
+            </section>
+        </div>
+        </div>
+    </div>
+</div>

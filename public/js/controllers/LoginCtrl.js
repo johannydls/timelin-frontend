@@ -4,7 +4,7 @@ angular.module('timelin')
     $scope.loginService = new LoginService();
 
     $scope.login = function() {
-
+        $scope.loginService.email = $scope.loginService.email.toLowerCase();
         $scope.loginService.$save()
             .then((res) => {
                 if ($scope.frm.$valid) {
@@ -23,11 +23,5 @@ angular.module('timelin')
             })
     };
 
-    $rootScope.logout = function() {
-        $rootScope.userLogin = null;
-        $localStorage.userLogin = null;
-        delete $rootScope.userLogin;
-        delete $localStorage.userLogin;
-        $location.path('/login');
-    }
+    
 });

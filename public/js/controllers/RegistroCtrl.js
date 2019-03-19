@@ -5,7 +5,7 @@ angular.module('timelin')
     $scope.registro = new RegistroService();
 
     $scope.cadastrar = () => {
-
+        $scope.registro.email = $scope.registro.email.toLowerCase();
         $scope.registro.$save() 
         .then(() => {
             

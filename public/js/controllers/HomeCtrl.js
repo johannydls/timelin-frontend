@@ -8,6 +8,8 @@ angular.module('timelin')
     $scope.eventPostService = new EventPostService();
     $scope.eventDeleteService = new EventDeleteService();
 
+    $scope.eventoSelecionado = null;
+
     $scope.eventos = [];
     const listarEventos = () => {
         EventGetService.query({idUser: $scope.userLogin.id}, (events) => {
@@ -40,6 +42,10 @@ angular.module('timelin')
                 delete $scope.myDate;
             }
 
+            else {
+                console.log("Preencha todos os campos!");
+            }
+
             
             
         })
@@ -66,7 +72,7 @@ angular.module('timelin')
         $scope.eventoSelecionado = evento;
     };
 
-    $scope.showDialogAddEvent = (ev) => {
+    $scope.showDialogEditEvent = (ev) => {
         $mdDialog.show({
             controller: 'HomeCtrl',
             templateUrl: '/public/js/views/evento.html',

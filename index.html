@@ -28,19 +28,19 @@
     </style>
     
 </head>
-<body>
+<body ng-controller="GlobalCtrl">
 
     <md-toolbar class="md-hue-2">
         <div class="md-toolbar-tools">
-            <md-toolbar-filler layout="row" layout-align="center center">
+            <a href="#!/sobre"> <md-toolbar-filler layout="row" layout-align="center center">
                 <img id="filler-icon" src="/public/resources/img/logo.png"></img>
-            </md-toolbar-filler>
-        
+            </md-toolbar-filler></a>
+    
+            <h2 flex md-truncate></h2>
+
             <a ng-if="$root.userLogin" href="#!/home" class="linkToolbar">
                 <md-button class="md-button" aria-label="Login">Linha do Tempo</md-button>
             </a>
-    
-            <h2 flex md-truncate></h2>
     
             <a ng-if="!$root.userLogin" href="#!/sobre" class="linkToolbar">
                 <md-button class="md-button" aria-label="Sobre">Sobre</md-button>
@@ -59,7 +59,7 @@
             </a>
 
 
-            <md-button ng-if="$root.userLogin" class="md-button" ng-click="logout()" aria-label="Sair">Sair</md-button>
+            <md-button ng-if="$root.userLogin" class="md-button" ng-click="$root.logout()" aria-label="Sair">Sair</md-button>
             
 
         </div>
@@ -103,5 +103,6 @@
     <script src="./public/js/controllers/RegistroCtrl.js"></script>
     <script src="./public/js/controllers/SobreCtrl.js"></script>
     <script src="./public/js/controllers/ContaCtrl.js"></script>
+    <script src="./public/js/controllers/GlobalCtrl.js"></script>
 </body>
 </html>
