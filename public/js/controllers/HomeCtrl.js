@@ -31,22 +31,12 @@ angular.module('timelin')
         
         $scope.eventPostService.$save()
         .then((event) => {
-            if ($scope.frmEvent.$valid) {
-                listarEventos();
-
-                
-                console.log("Evento criado!");
-                console.log(event)
-                $('#addEvento').modal('hide');
-                $scope.eventPostService = new EventPostService();
-                delete $scope.myDate;
-            }
-
-            else {
-                console.log("Preencha todos os campos!");
-            }
-
-            
+            console.log("Evento criado!");
+            console.log(event);
+            $('#addEvento').modal('hide');
+            $scope.eventPostService = new EventPostService();
+            delete $scope.myDate;
+            listarEventos();
             
         })
         .catch((erro) => {
@@ -54,7 +44,7 @@ angular.module('timelin')
             console.log(erro);
         });
         
-        listarEventos();
+        
     };
 
     $scope.removeAcontecimento = (idEvent) => {
