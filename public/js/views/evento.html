@@ -1,0 +1,48 @@
+<md-dialog aria-label="Adicionar novo Pequeno Grupo">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Adicionar novo acontecimento</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon aria-label="Close dialog">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit=""
+                        preserveAspectRatio="xMidYMid meet" focusable="false">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+                    </svg>
+                </md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <form name="frmEvent">
+        <md-dialog-content style="width:500px;max-width:800px;max-height:810px; padding: 30px;">
+            <section>
+               
+                <md-input-container class="md-block">
+                    <label>Título</label>
+                    <input ng-model="eventService.title" type="text" required />
+                </md-input-container>
+                    
+                <md-input-container class="md-block">
+                    <label>O que está acontecendo?</label>
+                    <textarea ng-model="eventService.description" type="text" required rows="3"></textarea>
+                </md-input-container>
+ 
+                <md-input-container md-no-float class="md-block">
+                    <label>Cor</label>
+                    <md-select name="favoriteColor" ng-model="eventService.color" >
+                        <md-option ng-value="cor" ng-style="{'background-color':cor}" ng-repeat="cor in cores">{{cor}}</md-option>
+                    </md-select>
+                </md-input-container>
+
+            </section>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-sm="column" layout-align="center center" layout-wrap style="padding-bottom:20px;">
+            <md-button class="md-raised md-warn" ng-click="cancel()" style="margin-right:20px;">
+                Cancelar
+            </md-button>
+
+            <md-button class="md-raised md-primary" ng-click="addAcontecimento()">Postar</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

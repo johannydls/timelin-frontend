@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="/public/js/views/login.css">
+<br>
+<div class="login-wrapper">
+    <img src="/public/resources/img/logo.png" alt=""><br>
+    <h3>Cadastre-se para usar o nosso serviço!</h3>
+    
+    <form  name="frm" >
+        <input ng-model="registro.name" name="name" type="text" placeholder="Nome" required>
+        <input ng-model="registro.email" name="email" type="text" placeholder="Email" required>
+        <input ng-model="registro.password" name="password" type="password" placeholder="Senha" required>
+
+        <section layout="row" layout-xs="column" layout-align="center center" layout-wrap>
+
+            <md-button class="md-raised md-primary" type="submit" ng-click="cadastrar()" style="width: 260px">Cadastrar-se!</md-button>
+
+        </section>
+    </form> 
+</div>

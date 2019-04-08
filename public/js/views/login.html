@@ -1,0 +1,17 @@
+
+<link rel="stylesheet" href="/public/js/views/login.css">
+<br>
+<div class="login-wrapper">
+    <img src="/public/resources/img/logo.png" alt="">
+    
+    <form ng-submit="login()" name="frm" >
+        <input ng-model="loginService.email" name="email" type="text" placeholder="Email" required>
+        <input ng-model="loginService.password" name="password" type="password" placeholder="Senha" required>
+
+        <section layout="row" layout-xs="column" layout-align="center center" layout-wrap>
+
+            <md-button class="md-raised md-primary" type="submit" style="width: 260px">Entrar</md-button>
+
+        </section>
+    </form> 
+</div>

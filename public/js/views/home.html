@@ -1,0 +1,163 @@
+
+<link rel="stylesheet" href="/public/js/views/home.css">
+<!-- Modal -->
+<div class="modal fade md-whiteframe-6dp" id="addEvento" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <img src="/public/resources/img/favicon.png" width="32" alt="">
+                    <br>
+                <h5 class="modal-title" id="exampleModalLabel" style="margin-left:5px">Novo acontecimento</h5>
+                <br>
+                
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+       
+            <div class="modal-body timeline-wrapper-form">
+
+            <form name="frmEvent">
+                <input type="text" placeholder="Título do evento" name="title" ng-model="eventPostService.title" required>
+                <textarea ng-trim="false" maxlength="255" name="description" id="" cols="30" rows="5" placeholder="O que aconteceu?" ng-model="eventPostService.description" required></textarea>
+                <div style="text-align:right">
+                    <sup style="color: #bbbfc3">Caracteres restantes: {{255-eventPostService.description.length}}</sup>
+                </div>
+                <!--<input type="date" placeholder="Quando aconteceu?" name="myDate" ng-model="myDate" required>-->
+
+                <datepicker date-format="yyyy/MM/dd" selector="form-control">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text">
+                                    <i class="fa fa-lg fa-calendar"></i>
+                            </label>
+                        </div>
+                        <input type="text" style="cursor: pointer" class="form-control" placeholder="Quando aconteceu?" ng-model="myDate"required/>
+
+                    </div>
+                </datepicker>
+
+                <input required color-picker style="cursor: pointer"
+                color-picker-model="color"
+                color-picker-show-value="true"
+                ng-style="{background:color}"/>
+
+                <div class="modal-footer">
+                        <section layout="row" layout-xs="column" layout-align="center center" layout-wrap>
+                            <md-button class="md-raised md-default" type="button" data-dismiss="modal">Cancelar</md-button>
+                            <md-button class="md-raised md-primary" type="submit" ng-click="addAcontecimento()">Postar</md-button>
+                        </section>
+                    </div>
+            </form>
+        </div>
+        
+        </div>
+    </div>
+</div>
+
+<!--data-toggle="modal" data-target="#addEvento    ng-click="showDialogAddEvent($event)""-->
+<button style="background:rgb(48, 175, 230) !important; position:fixed" data-toggle="modal" data-target="#addEvento" class="md-fab md-fab-bottom-right md-button" type="button" >
+    <md-icon md-svg-src="/public/resources/img/outline-add-24px.svg"></md-icon>
+</button>
+
+<div class="timeline-wrapper">
+    <div class="box">
+        <img src="/public/resources/img/home-logo-timeline.png" alt="">
+    </div>
+
+    <div class="event-list">
+        
+            <div ng-show="!eventos.length" class="alert alert-info text-center" role="alert">
+                    Você não tem eventos adicionados!
+                  </div>
+
+        <md-expansion-panel ng-style="{border:'3px solid '+  event.color}" md-component-id="panelOne" ng-repeat="event in eventos" style="margin-bottom:10px;">
+            
+            <md-expansion-panel-collapsed  style="cursor:pointer">
+                <div class="md-title">{{event.title}}</div>
+                <div style="text-align: right !important;" class="md-summary">{{event.date | date:"dd 'de' MMMM 'de' yyyy"}}</div>
+                <md-expansion-panel-icon></md-expansion-panel-icon>
+            </md-expansion-panel-collapsed>
+                
+                
+            <md-expansion-panel-expanded>
+            
+                <md-expansion-panel-header  ng-click="$panel.collapse()" style="cursor:pointer">
+                    <div class="md-title">{{event.title}}</div>
+                    <div style="text-align: right !important;" class="md-summary"><strong>{{event.date | date:"dd 'de' MMMM 'de' yyyy"}}</strong></div>
+                    <md-expansion-panel-icon></md-expansion-panel-icon>
+                </md-expansion-panel-header>
+            
+                <md-expansion-panel-content>
+                    <p><strong>Título: </strong>{{event.title}}</p>
+                    <p><strong>Descrição:<br></strong>{{event.description}}</p>
+                </md-expansion-panel-content>
+            
+                <md-expansion-panel-footer >
+                    <div flex></div>
+                    <md-button class="md-warn" ng-click="showConfirmRemove($event, event)">Excluir acontecimento</md-button>
+                    <md-button class="md-accent" data-toggle="modal" ng-click="selecionaEvento(event)" data-target="#editEvento">Editar</md-button>
+                    <md-button class="md-primary" ng-click="$panel.collapse()">Fechar</md-button>
+                </md-expansion-panel-footer>
+            
+            </md-expansion-panel-expanded>
+                
+        </md-expansion-panel>
+            
+    </div>
+</div>
+
+<!-- Modal edit evento-->
+<!-- Modal -->
+<div class="modal fade md-whiteframe-6dp" id="editEvento" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                        <img src="/public/resources/img/favicon.png" width="32" alt="">
+                        <br>
+                    <h5 class="modal-title" id="exampleModalLabel" style="margin-left:5px">Novo acontecimento</h5>
+                    <br>
+                    
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+           
+                <div class="modal-body timeline-wrapper-form">
+    
+                <form name="frmEvent">
+                    <input type="text" placeholder="Título do evento" name="title" ng-model="eventoSelecionado.title" required>
+                    <textarea ng-trim="false" maxlength="255" name="description" id="" cols="30" rows="5" placeholder="O que aconteceu?" ng-model="eventoSelecionado.description" required></textarea>
+                    <div style="text-align:right">
+                        <sup style="color: #bbbfc3">Caracteres restantes: {{255-eventoSelecionado.description.length}}</sup>
+                    </div>
+
+                    <datepicker date-format="yyyy/MM/dd" selector="form-control">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text">
+                                        <i class="fa fa-lg fa-calendar"></i>
+                                </label>
+                            </div>
+                            <input type="text" style="cursor: pointer" class="form-control" placeholder="Quando aconteceu?" ng-model="eventoSelecionado.date" required/>
+    
+                        </div>
+                    </datepicker>
+    
+                    <input required color-picker style="cursor: pointer"
+                    color-picker-model="color"
+                    color-picker-show-value="true"
+                    ng-style="{background:color}"/>
+    
+                    <div class="modal-footer">
+                            <section layout="row" layout-xs="column" layout-align="center center" layout-wrap>
+                                <md-button class="md-raised md-default" type="button" data-dismiss="modal">Cancelar</md-button>
+                                <md-button class="md-raised md-primary" type="submit" ng-click="">Salvar</md-button>
+                            </section>
+                        </div>
+                </form>
+            </div>
+            
+            </div>
+        </div>
+    </div>

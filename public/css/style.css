@@ -1,0 +1,67 @@
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+  
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+  
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+  }
+
+  body {
+    background: #fafafa !important;
+  }
+
+  .color-picker, .md-datepicker-calendar-pane {
+    z-index: 9999 !important;
+  }
+
+@font-face {
+  font-family: 'font-awesome';
+  src: url('/node_modules/font-awesome/fonts/fontawesome-webfont.eot');
+  src: url('/node_modules/font-awesome/fonts/fontawesome-webfont.svg') format('svg');
+  src: url('/node_modules/font-awesome/fonts/fontawesome-webfont.ttf') format('truetype');
+  src: url('/node_modules/font-awesome/fonts/fontawesome-webfont.woff') format('woff');
+
+}
+
+.map-container-6{
+  overflow:hidden;
+  padding-bottom:56.25%;
+  position:relative;
+  height:0;
+  }
+  .map-container-6 iframe{
+  left:0;
+  top:0;
+  height:100%;
+  width:100%;
+  position:absolute;
+  }
+
+  .clientes {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    width: 600px;
+  }
+
+  .clientes img {
+
+  }
